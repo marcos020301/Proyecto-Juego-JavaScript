@@ -1,22 +1,93 @@
-.Foto-inicio img {
+.Foto-inicio  {
   width: 100%;      
   height: 100vh;     
-  object-fit: cover; 
-  object-position: center;
-  display: block;
+  background-image: url("../images/fondo_principal.png");
+  background-size: cover;
+  background-position: center;
   
 }
 
 body {
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .login {
     position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-size: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+}
+.login img{
+
+    width: 100%;
+    right: 40%;
+}
+
+
+.titulo-juego {
+    position: absolute;
     top: 40%;
     left: 70%;
     color: black;
-    font-size: 24px;
-    
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
 }
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.boton-play {
+    width: 300px;
+    cursor: pointer;
+
+}
+
+label {
+    color: black;
+    font-size: 30px;
+    font-family: impact, fantasy;
+
+}
+
+input {
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+}
+
+form {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  background: transparent;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+

@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css">
-    <script src="scripts/proyecto.js"></script>
+    <script src="./scripts/proyecto.js" defer></script>
 </head>
 <body>
     <div class="Foto-inicio">
-    <img src="../images/soccer-ball-with-copy-space.jpg">
-         <div class="login">
-            <label>Player: </label>
-            <input type="text"> </div>
-    </div>
-
-    <audio autoplay loop>
-        <source src="audio/Sonido ambiente partido de fútbol - Sound of football match environment (FX).mp3">
+    
+ 
+    <form action="juego.html">
+        <label>Player: </label>
+        <input type="text" id="playerName" required>
+    <button type="submit">
+        <img class="boton-play" src="../images/PLAY.png">
+    </button>
+    </form>
+        
+     <audio autoplay loop>
+        <source src="../audio/sonido_1pantalla.mp3">
     </audio>
 
-    
-    
+
+     </div>
 </body>
 </html>
