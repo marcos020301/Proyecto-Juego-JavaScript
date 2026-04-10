@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="./scripts/proyecto.js" defer></script>
+</head>
+<body>
+    <div class="Foto-inicio">
+    
+ 
+        <form action="juego.html">
+        <label>Player: </label>
+            <input type="text" id="playerName" required>
+        <button type="submit">
+            <img class="boton-play" src="../images/PLAY.png">
+        </button>
+        </form>
+    
+    
+
+    </div>
+
+
+
+
+    <audio id="musica" src="audio/sonido_1pantalla.mp3" loop autoplay></audio>
+
+
+
+    <script>
+    const audio = document.getElementById("musica");
+
+    document.addEventListener("click", () => {
+  audio.play();
+    });
+    </script>
+
+
+
+
+</body>
+</html>
