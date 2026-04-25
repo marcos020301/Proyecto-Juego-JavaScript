@@ -4,8 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/proyecto.js" defer></script>
+</head>
 </head>
 <body>
-    <h2 id="nombreJugador"></h2>
+  <div class="pantalla-seleccion">
+
+  <h1>Elige tu jugador</h1>
+
+  <div class="contenedor-jugadores">
+
+    
+    <div class="jugador" onclick="seleccionarJugador('jugador1')">
+      <img src="images/1000106810.png" alt="Jugador 1">
+      <p>CRISTIANO RONALDO</p>
+
+      <div class="stats">
+        <div>Potencia</div>
+        <div class="barra"><div class="relleno" style="width: 90%"></div></div>
+
+        <div>Habilidad</div>
+        <div class="barra"><div class="relleno" style="width: 80%"></div></div>
+
+        <div>Finalización</div>
+        <div class="barra"><div class="relleno" style="width: 95%"></div></div>
+      </div>
+    </div>
+
+
+    <div class="jugador" onclick="seleccionarJugador('jugador2')">
+      <img src="images/1000106812.png" alt="Jugador 2">
+      <p>LIONEL MESSI</p>
+
+      <div class="stats">
+        <div>Potencia</div>
+        <div class="barra"><div class="relleno" style="width: 75%"></div></div>
+
+        <div>Habilidad</div>
+        <div class="barra"><div class="relleno" style="width: 90%"></div></div>
+
+        <div>Finalización</div>
+        <div class="barra"><div class="relleno" style="width: 85%"></div></div>
+      </div>
+    </div>
+
+   
+    <div class="jugador" onclick="seleccionarJugador('jugador3')">
+      <img src="images/1000106813.png" alt="Jugador 3">
+      <p>VINICIUS JR</p>
+
+      <div class="stats">
+        <div>Potencia</div>
+        <div class="barra"><div class="relleno" style="width: 70%"></div></div>
+
+        <div>Habilidad</div>
+        <div class="barra"><div class="relleno" style="width: 85%"></div></div>
+
+        <div>Finalización</div>
+        <div class="barra"><div class="relleno" style="width: 70%"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>
