@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="scripts/proyecto.js" defer></script>
+</head>
+<body>
+    <div class="pantalla-penaltis" id="cancha">
+    
+        <audio id="ambiente" loop> <source src="audio/sonido ambiente estadio.mp3" type="audio/mpeg"></audio>
+
+        <audio id="gol">  <source src="audio/sonido de gol.m4a" type="audio/mpeg"></audio>
+
+        <audio id="fallo"> <source src="audio/fallo del penalti.mp3" type="audio/mpeg"></audio>
+
+        <img id="portero" src="images/1000106803.png" class="portero">
+
+        <img id="pelota" src="images/pelota1.webp" class="pelota">
+
+        <div class="zona izquierda" onclick="tirar('izquierda')"></div>
+
+        <div class="zona centro" onclick="tirar('centro')"></div>
+
+        <div class="zona derecha" onclick="tirar('derecha')"></div>
+
+        <div id="mensajeFinal"></div>
+
+        
+
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    </div>
+</body>
+</html>
