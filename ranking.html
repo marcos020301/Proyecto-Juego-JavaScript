@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking</title>
+</head>
+<body>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body class="pantalla-seleccion">
+
+<a href="juego.html" class="boton-volver">⬅</a>
+
+<h1>🏆 Ranking de Jugadores</h1>
+
+<div class="ranking-completo" id="rankingLista"></div>
+
+<script>
+
+const rankingLista = document.getElementById("rankingLista");
+
+let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+
+ranking.sort((a, b) => b.goles - a.goles);
+
+ranking.slice(0, 10).forEach((jugador, index) => {
+
+  rankingLista.innerHTML += `
+
+    <div class="ranking-jugador">
+
+      <span>${index + 1}. ${jugador.nombre}</span>
+
+      <span>${jugador.goles} ⚽</span>
+
+    </div>
+
+  `;
+});
+
+</script>
+
+</body>
+</html>

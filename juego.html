@@ -7,18 +7,24 @@
     <link rel="stylesheet" href="styles/style.css">
     <script src="scripts/proyecto.js" defer></script>
 </head>
-</head>
 <body>
   <div class="pantalla-seleccion">
 
     <a href="index.html" class="boton-volver">⬅</a>
 
-  <h1>Elige tu jugador</h1>
+
+  <h2 id="nombreJugador" class="nombre-jugador"></h2>
+
+   <a href="ranking.html" class="boton-ranking">
+  🏆 Ver Ranking
+  </a>
+
+ <h1>Elige tu jugador</h1>
 
   <div class="contenedor-jugadores">
 
     
-    <div class="jugador" onclick="seleccionarJugador('jugador1')">
+    <div class="jugador" onclick="seleccionarJugador('jugador1')"  onmouseenter="sonarJugador('jugador1')">
       <img src="images/1000106810.png" alt="Jugador 1">
       <p>CRISTIANO RONALDO</p>
 
@@ -35,7 +41,7 @@
     </div>
 
 
-    <div class="jugador" onclick="seleccionarJugador('jugador2')">
+    <div class="jugador" onclick="seleccionarJugador('jugador2')" onmouseenter="sonarJugador('jugador2')">
       <img src="images/1000106812.png" alt="Jugador 2">
       <p>LIONEL MESSI</p>
 
@@ -52,7 +58,7 @@
     </div>
 
    
-    <div class="jugador" onclick="seleccionarJugador('jugador3')">
+    <div class="jugador" onclick="seleccionarJugador('jugador3')" onmouseenter="sonarJugador('jugador3')">
       <img src="images/1000106813.png" alt="Jugador 3">
       <p>VINICIUS JR</p>
 
@@ -71,5 +77,10 @@
   </div>
 
 </div>
+<audio id="audioCR7" src="audio/SIUU.mp3"></audio>
+
+<audio id="audioMessi" src="audio/Quemirasbobo.mp3"></audio>
+
+<audio id="audioVini" src="audio/soybuenisimo.mp3"></audio>
 </body>
 </html>

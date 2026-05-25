@@ -7,17 +7,48 @@ if (form) {
   });
 }
 
-
 const nombreGuardado = localStorage.getItem("player");
 const elemento = document.getElementById("nombreJugador");
 
 if (elemento) {
-  elemento.textContent = nombreGuardado;
+  elemento.innerHTML = `
+    <span class="texto-player">PLAYER:</span>
+    <span class="nombre-player">${nombreGuardado}</span>
+  `;
 }
 
 function seleccionarJugador(jugador) {
   localStorage.setItem("jugadorSeleccionado", jugador);
   window.location.href = "penalti.html";
+}
+function sonarJugador(jugador){
+
+    const audioCR7 = document.getElementById("audioCR7");
+    const audioMessi = document.getElementById("audioMessi");
+    const audioVini = document.getElementById("audioVini");
+
+    // PARAR TODOS
+    audioCR7.pause();
+    audioMessi.pause();
+    audioVini.pause();
+    audioCR7.currentTime = 0;
+    audioMessi.currentTime = 0;
+    audioVini.currentTime = 0;
+
+    // CR7
+    if(jugador === "jugador1"){
+        audioCR7.play();
+    }
+
+    // MESSI
+    else if(jugador === "jugador2"){
+        audioMessi.play();
+    }
+
+    // VINI
+    else if(jugador === "jugador3"){
+        audioVini.play();
+    }
 }
 
 let jugador = localStorage.getItem("jugadorSeleccionado");
@@ -37,9 +68,6 @@ if (jugador === "jugador1") {
     let tirando = false;
     let tiros = 0;
     let goles = 0;
-    tirando = false;
-    tiros = 0;
-    goles = 0;
     document.addEventListener("click", iniciarMusica, {
     once: true
 });
@@ -130,25 +158,79 @@ if(tiros === 3){
   setTimeout(() => {
     console.log("FINAL PARTIDA");
     console.log("GOLES FINALES:", goles);
-    
+// GUARDAR EN RANKING
+    const nombreJugador = localStorage.getItem("player");
+    let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
+
+ranking.push({
+    nombre: nombreJugador,
+    goles: goles
+});
+
+localStorage.setItem("ranking", JSON.stringify(ranking));
         if(goles >= 2){
-            confetti({
-                particleCount: 200,
-                spread: 120
-            });
-            mostrarMensaje("HAS GANADO");
-        }
 
-        else{
-            mostrarMensaje("HAS PERDIDO");
-        }
+    mostrarMensaje("HAS GANADO");
 
-        setTimeout(() => {
-            localStorage.removeItem("jugadorSeleccionado");
-            window.location.href = "juego.html";
-        }, 3000);
+    const video = document.getElementById("videoFinal");
+
+    // CRISTIANO
+    if(jugador === "jugador1"){
+        video.src = "videos/cr7.mp4";
+    }
+
+    // MESSI
+    else if(jugador === "jugador2"){
+        video.src = "videos/messi.mp4";
+    }
+
+    // VINICIUS
+    else if(jugador === "jugador3"){
+        video.src = "videos/vini.mp4";
+    }
+
+    setTimeout(() => {
+
+        video.style.display = "block";
+
+        video.load();
+
+        ambiente.pause();
+
+        sonidoGol.pause();
+        sonidoGol.currentTime = 0;
+
+        document.getElementById("mensajeFinal").style.display = "none";
+
+        video.play();
+
     }, 1500);
-    return;
+
+    // CUANDO TERMINA EL VIDEO
+    video.onended = function(){
+
+        localStorage.removeItem("jugadorSeleccionado");
+
+        window.location.href = "juego.html";
+    };
+}
+
+else{
+
+    mostrarMensaje("HAS PERDIDO");
+
+    setTimeout(() => {
+
+        localStorage.removeItem("jugadorSeleccionado");
+
+        window.location.href = "juego.html";
+
+    }, 3000);
+}
+
+}, 1500);
+
+return;
 }
   if(tiros <3) {
     setTimeout(() => {
