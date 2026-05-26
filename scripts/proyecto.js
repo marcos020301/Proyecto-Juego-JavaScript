@@ -1,3 +1,4 @@
+// GUARDA EL NOMBRE DEL JUGADOR
 const form = document.querySelector("form");
 
 if (form) {
@@ -7,6 +8,7 @@ if (form) {
   });
 }
 
+// TE MUESTRA EL NOMBRE DEL JUGADOR
 const nombreGuardado = localStorage.getItem("player");
 const elemento = document.getElementById("nombreJugador");
 
@@ -17,17 +19,20 @@ if (elemento) {
   `;
 }
 
+// SELECCION DEL PERSONAJE CON EL QUE VAS A TIRAR Y ENTRAS A JUGAR
 function seleccionarJugador(jugador) {
   localStorage.setItem("jugadorSeleccionado", jugador);
   window.location.href = "penalti.html";
 }
+
+// SONIDO DE LOS PERSONAJES AL PASAR EL RATON POR ENCIMA
 function sonarJugador(jugador){
 
     const audioCR7 = document.getElementById("audioCR7");
     const audioMessi = document.getElementById("audioMessi");
     const audioVini = document.getElementById("audioVini");
 
-    // PARAR TODOS
+// PARAR TODOS PARA QUE NO SUENEN A LA VEZ
     audioCR7.pause();
     audioMessi.pause();
     audioVini.pause();
@@ -51,15 +56,10 @@ function sonarJugador(jugador){
     }
 }
 
+// ESTO ES PARA RECUPERAR EL PERSONAJE QUE HEMOS ELEGIDO
 let jugador = localStorage.getItem("jugadorSeleccionado");
 
-if (jugador === "jugador1") {
-  console.log("Elegiste jugador 1");
-} else if (jugador === "jugador2") {
-  console.log("Elegiste jugador 2");
-} else if (jugador === "jugador3") {
-  console.log("Elegiste jugador 3");
-}
+// ELEMENTOS Y VARIABLES DEL JUEGO 
     const pelota = document.getElementById("pelota");
     const portero = document.getElementById("portero");
     const ambiente = document.getElementById("ambiente");
@@ -68,10 +68,14 @@ if (jugador === "jugador1") {
     let tirando = false;
     let tiros = 0;
     let goles = 0;
+    let puntos = 0;
+
+// AL HACER CLICK SE INICIA LA MUSICA DE FONDO
     document.addEventListener("click", iniciarMusica, {
     once: true
 });
 
+//MUESTRA EL MENSAJE FINAL DE HAS GANADO O PERDIDO
 function mostrarMensaje(texto){
 
     const mensaje = document.getElementById("mensajeFinal");
@@ -84,12 +88,13 @@ function iniciarMusica(){
     ambiente.volume = 0.3;
     ambiente.play();
 }
-  
+
+// FUNCION PRINCIPAL DEL JUEGO: MOVIMIENTOS DEL PORTERO, DE LA PELOTA
     function tirar(direccionJugador){
 
     // OPCIONES PORTERO
     const opciones =
-    ["izquierda", "centro", "derecha"];
+    ["izquierda","izquierda", "derecha","derecha", "centro"];
 
     // DECISION ALEATORIA
     const decisionPortero =
@@ -132,25 +137,38 @@ function iniciarMusica(){
         portero.style.left = "70%";
     }
 
+// SE REINICIAN LOS SONIDOS PARA QUE NO SE PISEN ENTRE ELLOS
 sonidoGol.pause();
 sonidoGol.currentTime = 0;
 sonidoFallo.pause();
 sonidoFallo.currentTime = 0;
 
+// AUMENTA EL CONTADOR DE TIROS
   tiros++;
-  console.log("TIROS ACTUALES:", tiros);
-  console.log("Tiros:", tiros);
-  console.log("Goles:", goles);
 
 // GOL O PARADA
 if(direccionJugador === decisionPortero){
     sonidoFallo.play();
+
+// ACTUALIZA EL MARCADOR EN LA PANTALLA
+    document.getElementById("marcador").innerHTML =
+    `GOLES: ${goles} | TIROS: ${tiros} | PUNTOS: ${puntos}`;
 }
 
 else{
     goles++;
+    // PUNTOS SEGÚN EL TIRO
+    if(direccionJugador === "centro"){
+        puntos += 100;
+    }
+    else{
+        puntos += 200;
+    }
     sonidoGol.play();
+    document.getElementById("marcador").innerHTML =
+    `GOLES: ${goles} | TIROS: ${tiros} | PUNTOS: ${puntos}`;
 }
+
 // FINAL PARTIDA
 if(tiros === 3){
   tirando = true;
@@ -158,17 +176,41 @@ if(tiros === 3){
   setTimeout(() => {
     console.log("FINAL PARTIDA");
     console.log("GOLES FINALES:", goles);
+
 // GUARDAR EN RANKING
     const nombreJugador = localStorage.getItem("player");
     let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
 
-ranking.push({
-    nombre: nombreJugador,
-    goles: goles
-});
+    const indiceJugador = ranking.findIndex(
+    jugador => jugador.nombre === nombreJugador
+);
+
+// SI EL JUGADOR YA EXISTE
+if(indiceJugador !== -1){
+
+    // SOLO ACTUALIZA SI MEJORA
+    if(puntos > ranking[indiceJugador].puntos){
+        ranking[indiceJugador] = {
+            nombre: nombreJugador,
+            goles: goles,
+            puntos: puntos
+        };
+    }
+}
+
+// SI NO EXISTE
+else{
+    ranking.push({
+        nombre: nombreJugador,
+        goles: goles,
+        puntos: puntos
+    });
+}
 
 localStorage.setItem("ranking", JSON.stringify(ranking));
-        if(goles >= 2){
+        
+// SI EL JUGADOR METE 2 O MAS GANA Y SE REPRODUCE UN VIDEO DEL PERSONAJE ELEGIDO
+if(goles >= 2){
 
     mostrarMensaje("HAS GANADO");
 
@@ -192,21 +234,16 @@ localStorage.setItem("ranking", JSON.stringify(ranking));
     setTimeout(() => {
 
         video.style.display = "block";
-
         video.load();
-
         ambiente.pause();
-
         sonidoGol.pause();
         sonidoGol.currentTime = 0;
-
         document.getElementById("mensajeFinal").style.display = "none";
-
         video.play();
 
     }, 1500);
 
-    // CUANDO TERMINA EL VIDEO
+// CUANDO TERMINA EL VIDEO VOLVER AL MENU
     video.onended = function(){
 
         localStorage.removeItem("jugadorSeleccionado");
@@ -232,6 +269,8 @@ else{
 
 return;
 }
+
+// ESTO ES PARA QUE DESPUES DE CADA TIRO SE REINICIEN POSICIONES DEL BALON Y PORTERO HASTA LLEGAR A 3
   if(tiros <3) {
     setTimeout(() => {
 
@@ -242,4 +281,30 @@ return;
         tirando = false;
     }, 1500);
   }
+}
+ 
+// ESTO ES PARA MOSTRAR EL RANKING, MUESTRA EL TOP 10
+const rankingLista = document.getElementById("rankingLista");
+
+if(rankingLista){
+
+    let ranking =
+    JSON.parse(localStorage.getItem("ranking")) || [];
+
+    // ORDENAR DE MAYOR A MENOR
+    ranking.sort((a, b) => b.puntos - a.puntos);
+
+    // MOSTRAR SOLO LOS 10 PRIMEROS
+    ranking.slice(0, 10).forEach((jugador, index) => {
+
+        rankingLista.innerHTML += `
+
+        <div class="ranking-jugador">
+
+            <span>${index + 1}. ${jugador.nombre}</span>
+            <span>${jugador.puntos} PUNTOS </span>
+
+        </div>
+        `;
+    });
 }
