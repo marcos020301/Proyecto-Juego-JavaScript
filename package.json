@@ -1,0 +1,26 @@
+{
+  "name": "proyecto-juego-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcos020301/Proyecto-Juego-JavaScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/marcos020301/Proyecto-Juego-JavaScript/issues"
+  },
+  "homepage": "https://github.com/marcos020301/Proyecto-Juego-JavaScript#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3"
+  }
+}

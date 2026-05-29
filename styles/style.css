@@ -120,7 +120,7 @@ button {
 }
 
 .pelota{
-    width: 150px;
+    width: 10%;
     position: absolute;
     bottom: 180px;
     left: 50%;
@@ -129,7 +129,7 @@ button {
 }
 
 .portero{
-    width: 400px;
+    width: 30%;
     position: absolute;
     bottom: 320px;
     left: 50%;
