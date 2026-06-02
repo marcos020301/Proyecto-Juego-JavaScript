@@ -31,36 +31,17 @@ const puntuacionSchema = new mongoose.Schema({
 const Puntuacion = mongoose.model("Puntuacion", puntuacionSchema);
 
 app.post("/guardar-puntuacion", async (req, res) => {
-
     try {
-
-        const { nombre, puntos } = req.body;
-
-        const jugadorExistente =
-        await Puntuacion.findOne({ nombre });
-
-        if (!jugadorExistente) {
-
-            await Puntuacion.create({
-                nombre,
-                puntos
-            });
-
-        } else if (puntos > jugadorExistente.puntos) {
-
-            jugadorExistente.puntos = puntos;
-            await jugadorExistente.save();
-        }
-
-        res.json({
-            mensaje: "Puntuación procesada"
+        const nuevaPuntuacion = new Puntuacion({
+            nombre: req.body.nombre,
+            puntos: req.body.puntos
         });
 
+        await nuevaPuntuacion.save();
+
+        res.json({ mensaje: "Puntuación guardada" });
     } catch (error) {
-
-        res.status(500).json({
-            error: error.message
-        });
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -75,23 +56,3 @@ app.get("/prueba", async (req, res) => {
 
     res.send("Guardado");
 });
-
-app.get("/ranking", async (req, res) => {
-
-    try {
-
-        const ranking = await Puntuacion
-            .find()
-            .sort({ puntos: -1 })
-            .limit(10);
-
-        res.json(ranking);
-
-    } catch (error) {
-
-        res.status(500).json({
-            error: error.message
-        });
-    }
-});
-

@@ -179,21 +179,6 @@ if(tiros === 3){
 
 // GUARDAR EN RANKING
     const nombreJugador = localStorage.getItem("player");
-
-    fetch("http://localhost:3000/guardar-puntuacion", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        nombre: nombreJugador,
-        puntos: puntos
-    })
-})
-.then(res => res.json())
-.then(data => console.log(data))
-.catch(error => console.log(error));
-
     let ranking = JSON.parse(localStorage.getItem("ranking")) || [];
 
     const indiceJugador = ranking.findIndex(
@@ -301,22 +286,25 @@ return;
 // ESTO ES PARA MOSTRAR EL RANKING, MUESTRA EL TOP 10
 const rankingLista = document.getElementById("rankingLista");
 
-if (rankingLista) {
+if(rankingLista){
 
-    fetch("http://localhost:3000/ranking")
-        .then(res => res.json())
-        .then(ranking => {
+    let ranking =
+    JSON.parse(localStorage.getItem("ranking")) || [];
 
-            ranking.forEach((jugador, index) => {
+    // ORDENAR DE MAYOR A MENOR
+    ranking.sort((a, b) => b.puntos - a.puntos);
 
-                rankingLista.innerHTML += `
-                <div class="ranking-jugador">
-                    <span>${index + 1}. ${jugador.nombre}</span>
-                    <span>${jugador.puntos} PUNTOS</span>
-                </div>
-                `;
-            });
+    // MOSTRAR SOLO LOS 10 PRIMEROS
+    ranking.slice(0, 10).forEach((jugador, index) => {
 
-        })
-        .catch(error => console.log(error));
+        rankingLista.innerHTML += `
+
+        <div class="ranking-jugador">
+
+            <span>${index + 1}. ${jugador.nombre}</span>
+            <span>${jugador.puntos} PUNTOS </span>
+
+        </div>
+        `;
+    });
 }
