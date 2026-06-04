@@ -73,7 +73,7 @@ button {
   background: rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   padding: 20px;
-  width: 200px;
+  width: 250px;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -85,7 +85,7 @@ button {
 
 .jugador img {
   width: 200px;
-  height: 200px;        
+  height: 220px;        
   object-fit: contain;  
   display: block;
   margin: 0 auto 10px auto;
@@ -120,18 +120,18 @@ button {
 }
 
 .pelota{
-    width: 10%;
+    width: 150px;
     position: absolute;
-    bottom: 180px;
+    bottom: 25vh;
     left: 50%;
     transform: translateX(-50%);
     transition: all 0.8s ease;
 }
 
 .portero{
-    width: 30%;
+    width: 450px;
     position: absolute;
-    bottom: 320px;
+    bottom: 37vh;
     left: 50%;
     transform: translateX(-50%);
     transition: all 0.6s ease;
@@ -257,7 +257,8 @@ button {
 
 .ranking-completo{
 
-    width: 500px;
+    width: 70%;
+    max-width: 700px;
     height: 520px;
     overflow-y: scroll;
     margin: 20px auto;

@@ -98,7 +98,7 @@ function iniciarMusica(){
 
     // DECISION ALEATORIA
     const decisionPortero =
-    opciones[Math.floor(Math.random() * 3)];
+    opciones[Math.floor(Math.random() * opciones.length)];
 
     // PELOTA
     // Izquierda
@@ -298,7 +298,7 @@ return;
   }
 }
  
-// ESTO ES PARA MOSTRAR EL RANKING, MUESTRA EL TOP 10
+// ESTO ES PARA MOSTRAR EL RANKING, MUESTRA EL TOP 10, Y LA CONEXION CON MONGODB
 const rankingLista = document.getElementById("rankingLista");
 
 if (rankingLista) {
