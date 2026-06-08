@@ -6,6 +6,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
 mongoose.connect("mongodb://marcos2001mgs_db_user:prueba123@ac-1gbrc4g-shard-00-00.dsealjv.mongodb.net:27017,ac-1gbrc4g-shard-00-01.dsealjv.mongodb.net:27017,ac-1gbrc4g-shard-00-02.dsealjv.mongodb.net:27017/?ssl=true&replicaSet=atlas-10utut-shard-0&authSource=admin&appName=Cluster0")
 .then(() => {
@@ -19,8 +20,10 @@ app.get("/", (req, res) => {
     res.send("Servidor funcionando");
 });
 
-app.listen(3000, () => {
-    console.log("Servidor en puerto 3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor en puerto ${PORT}`);
 });
 
 const puntuacionSchema = new mongoose.Schema({
