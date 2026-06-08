@@ -232,19 +232,19 @@ if(goles >= 2){
     const video = document.getElementById("videoFinal");
 
     // CRISTIANO
-    if(jugador === "jugador1"){
-        video.src = "videos/cr7.mp4";
-    }
+if(jugador === "jugador1"){
+    video.src = "videos/CR7.mp4";
+}
 
-    // MESSI
-    else if(jugador === "jugador2"){
-        video.src = "videos/messi.mp4";
-    }
+// MESSI
+else if(jugador === "jugador2"){
+    video.src = "videos/MESSI.mp4";
+}
 
-    // VINICIUS
-    else if(jugador === "jugador3"){
-        video.src = "videos/vini.mp4";
-    }
+// VINICIUS
+else if(jugador === "jugador3"){
+    video.src = "videos/Vini.mp4";
+}
 
     setTimeout(() => {
 
