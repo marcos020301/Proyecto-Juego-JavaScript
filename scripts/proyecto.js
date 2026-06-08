@@ -180,7 +180,7 @@ if(tiros === 3){
 // GUARDAR EN RANKING
     const nombreJugador = localStorage.getItem("player");
 
-    fetch("http://localhost:3000/guardar-puntuacion", {
+    fetch("https://proyecto-juego-javascript.onrender.com/guardar-puntuacion", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
@@ -303,7 +303,7 @@ const rankingLista = document.getElementById("rankingLista");
 
 if (rankingLista) {
 
-    fetch("http://localhost:3000/ranking")
+    fetch("https://proyecto-juego-javascript.onrender.com/ranking")
         .then(res => res.json())
         .then(ranking => {
 
